@@ -43,6 +43,6 @@ There are three ways to interact with TrustDeck:
 | [trustdeck-client](https://github.com/TrustDeck/trustdeck-client) | Java client library |
 | [trustdeck-docs](https://github.com/TrustDeck/trustdeck-docs) | Documentation, setup guides, and API reference |
 | [ace-benchmark](https://github.com/TrustDeck/ace-benchmark) | Performance and scalability benchmarking |
-| [ths-med-website](https://github.com/TrustDeck/ths-med-website) | Project website and general information |
+| [trustdeck-website](https://github.com/TrustDeck/trustdeck-website) | Project website and general information |
 
 For more detailed information, refer to the README files and documentation provided in the respective repositories.
