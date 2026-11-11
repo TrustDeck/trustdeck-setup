@@ -31,8 +31,9 @@ input (see below). Restart `npm run dev` after changing `api/` or `api-docs/`.
 ## Describing an endpoint
 
 The backend's spec has no descriptions, so they live in `api-docs/`: one file
-per endpoint, in the folder of its sidebar group, named after its `operationId`
-(also the last part of its URL in the API reference).
+per endpoint, named after its `operationId` (also the last part of its URL in
+the API reference). The folder is the sidebar group: `entity-types/` becomes
+"Entity types". `api-docs/_api.md` sets the order and descriptions of the groups.
 
 ```markdown
 ---
@@ -50,11 +51,11 @@ What the endpoint does, in a few sentences of Markdown.
 - `responses`: only status codes that mean something specific for this
   endpoint. Codes all endpoints share are explained on
   `src/content/docs/rest-api/errors.md`.
-- An optional `## Examples` section with code blocks (```` ```bash title="By identifier" ````)
-  replaces the generated request examples.
+- `examples` (optional): curl examples that replace the generated ones, as a
+  list of `label` and `code`. See `api-docs/pseudonyms/searchPseudonyms.md`.
 
 `npm run api-spec` fails when an endpoint has no file, a file has no endpoint
-(renamed or removed), a key is malformed or an action does not exist.
+(renamed or removed), or a permission is not in `api/actions.json`.
 `npm run api-spec -- --strict` also lists the endpoints that are not described yet.
 
 ## Updating the API spec

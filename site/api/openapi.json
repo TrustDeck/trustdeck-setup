@@ -1,138 +1,120 @@
 {
-  "openapi": "3.1.0",
-  "info": {
-    "title": "TrustDeck API",
-    "description": "Scalable trusted third party services for registration and pseudonymization of biomedical data.",
-    "version": "v2.7.1"
+  "openapi" : "3.1.0",
+  "info" : {
+    "title" : "TrustDeck API",
+    "description" : "Scalable trusted third party services for registration and pseudonymization of biomedical data.",
+    "version" : "v2.7.1"
   },
-  "servers": [
-    {
-      "url": "http://localhost:8080",
-      "description": "Generated server url"
-    }
-  ],
-  "paths": {
-    "/api/projects/{projectAbbreviation}": {
-      "get": {
-        "tags": [
-          "project-controller"
-        ],
-        "operationId": "getProject",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+  "servers" : [ {
+    "url" : "http://localhost:8080",
+    "description" : "Generated server url"
+  } ],
+  "paths" : {
+    "/api/projects/{projectAbbreviation}" : {
+      "get" : {
+        "tags" : [ "project-controller" ],
+        "operationId" : "getProject",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "put": {
-        "tags": [
-          "project-controller"
-        ],
-        "operationId": "updateProject",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "put" : {
+        "tags" : [ "project-controller" ],
+        "operationId" : "updateProject",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectDTO"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProjectDTO"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "delete": {
-        "tags": [
-          "project-controller"
-        ],
-        "operationId": "deleteProject",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "deleteDate",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "delete" : {
+        "tags" : [ "project-controller" ],
+        "operationId" : "deleteProject",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "deleteDate",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -140,181 +122,157 @@
         }
       }
     },
-    "/api/projects/{projectAbbreviation}/image": {
-      "get": {
-        "tags": [
-          "project-image-controller"
-        ],
-        "operationId": "getProjectImage",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/projects/{projectAbbreviation}/image" : {
+      "get" : {
+        "tags" : [ "project-image-controller" ],
+        "operationId" : "getProjectImage",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "put": {
-        "tags": [
-          "project-image-controller"
-        ],
-        "operationId": "updateProjectImage",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "put" : {
+        "tags" : [ "project-image-controller" ],
+        "operationId" : "updateProjectImage",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "image": {
-                    "type": "string",
-                    "format": "binary"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "image" : {
+                    "type" : "string",
+                    "format" : "binary"
                   }
                 },
-                "required": [
-                  "image"
-                ]
+                "required" : [ "image" ]
               }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "post": {
-        "tags": [
-          "project-image-controller"
-        ],
-        "operationId": "createProjectImage",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "post" : {
+        "tags" : [ "project-image-controller" ],
+        "operationId" : "createProjectImage",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "image": {
-                    "type": "string",
-                    "format": "binary"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "image" : {
+                    "type" : "string",
+                    "format" : "binary"
                   }
                 },
-                "required": [
-                  "image"
-                ]
+                "required" : [ "image" ]
               }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "delete": {
-        "tags": [
-          "project-image-controller"
-        ],
-        "operationId": "deleteProjectImage",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "delete" : {
+        "tags" : [ "project-image-controller" ],
+        "operationId" : "deleteProjectImage",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -322,167 +280,146 @@
         }
       }
     },
-    "/api/projects/{projectAbbreviation}/entities/{entityTypeName}/{trustDeckId}": {
-      "get": {
-        "tags": [
-          "entity-controller"
-        ],
-        "operationId": "getEntity",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "entityTypeName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "trustDeckId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/projects/{projectAbbreviation}/entities/{entityTypeName}/{trustDeckId}" : {
+      "get" : {
+        "tags" : [ "entity-controller" ],
+        "operationId" : "getEntity",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "entityTypeName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "trustDeckId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "put": {
-        "tags": [
-          "entity-controller"
-        ],
-        "operationId": "updateEntity",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "entityTypeName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "trustDeckId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "put" : {
+        "tags" : [ "entity-controller" ],
+        "operationId" : "updateEntity",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EntityDTO"
+        }, {
+          "name" : "entityTypeName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "trustDeckId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EntityDTO"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "delete": {
-        "tags": [
-          "entity-controller"
-        ],
-        "operationId": "deleteEntity",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "entityTypeName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "trustDeckId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "delete" : {
+        "tags" : [ "entity-controller" ],
+        "operationId" : "deleteEntity",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "entityTypeName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "trustDeckId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -490,143 +427,125 @@
         }
       }
     },
-    "/api/projects/{projectAbbreviation}/entities/config/{entityTypeName}": {
-      "get": {
-        "tags": [
-          "entity-type-controller"
-        ],
-        "operationId": "getProjectEntityType",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "entityTypeName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/projects/{projectAbbreviation}/entities/config/{entityTypeName}" : {
+      "get" : {
+        "tags" : [ "entity-type-controller" ],
+        "operationId" : "getProjectEntityType",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "entityTypeName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "put": {
-        "tags": [
-          "entity-type-controller"
-        ],
-        "operationId": "updateEntityType",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "entityTypeName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "put" : {
+        "tags" : [ "entity-type-controller" ],
+        "operationId" : "updateEntityType",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EntityTypeDTO"
+        }, {
+          "name" : "entityTypeName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EntityTypeDTO"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "delete": {
-        "tags": [
-          "entity-type-controller"
-        ],
-        "operationId": "deleteProjectEntityType",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "entityTypeName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "delete" : {
+        "tags" : [ "entity-type-controller" ],
+        "operationId" : "deleteProjectEntityType",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "entityTypeName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -634,216 +553,192 @@
         }
       }
     },
-    "/api/permissions/projects/{projectAbbreviation}": {
-      "get": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "getProjectPermissions",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "userId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/permissions/projects/{projectAbbreviation}" : {
+      "get" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "getProjectPermissions",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "userId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "put": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "updateProjectPermissions",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "userId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "put" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "updateProjectPermissions",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PermissionDTO"
+        }, {
+          "name" : "userId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/PermissionDTO"
                 }
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "post": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "createProjectPermissions",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "userId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "post" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "createProjectPermissions",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PermissionDTO"
+        }, {
+          "name" : "userId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/PermissionDTO"
                 }
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "delete": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "deleteProjectPermissions",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "userId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "delete" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "deleteProjectPermissions",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PermissionDTO"
+        }, {
+          "name" : "userId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/PermissionDTO"
                 }
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -851,248 +746,220 @@
         }
       }
     },
-    "/api/permissions/projects/{projectAbbreviation}/entity-types/{entityTypeName}": {
-      "get": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "getEntityTypePermissions",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "entityTypeName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "userId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/permissions/projects/{projectAbbreviation}/entity-types/{entityTypeName}" : {
+      "get" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "getEntityTypePermissions",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "entityTypeName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "userId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "put": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "updateEntityTypePermissions",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "entityTypeName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "userId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "put" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "updateEntityTypePermissions",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PermissionDTO"
+        }, {
+          "name" : "entityTypeName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "userId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/PermissionDTO"
                 }
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "post": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "createEntityTypePermissions",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "entityTypeName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "userId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "post" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "createEntityTypePermissions",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PermissionDTO"
+        }, {
+          "name" : "entityTypeName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "userId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/PermissionDTO"
                 }
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "delete": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "deleteEntityTypePermissions",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "entityTypeName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "userId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "delete" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "deleteEntityTypePermissions",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PermissionDTO"
+        }, {
+          "name" : "entityTypeName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "userId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/PermissionDTO"
                 }
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -1100,184 +967,164 @@
         }
       }
     },
-    "/api/permissions/global": {
-      "get": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "getGlobalPermissions",
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/permissions/global" : {
+      "get" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "getGlobalPermissions",
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "put": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "updateGlobalPermissions",
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "put" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "updateGlobalPermissions",
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PermissionDTO"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/PermissionDTO"
                 }
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "post": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "createGlobalPermissions",
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "post" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "createGlobalPermissions",
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PermissionDTO"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/PermissionDTO"
                 }
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "delete": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "deleteGlobalPermissions",
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "delete" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "deleteGlobalPermissions",
+        "parameters" : [ {
+          "name" : "userId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PermissionDTO"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/PermissionDTO"
                 }
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -1285,216 +1132,192 @@
         }
       }
     },
-    "/api/permissions/domains/{domainName}": {
-      "get": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "getDomainPermissions",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "userId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/permissions/domains/{domainName}" : {
+      "get" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "getDomainPermissions",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "userId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "put": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "updateDomainPermissions",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "userId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "put" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "updateDomainPermissions",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PermissionDTO"
+        }, {
+          "name" : "userId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/PermissionDTO"
                 }
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "post": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "createDomainPermissions",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "userId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "post" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "createDomainPermissions",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PermissionDTO"
+        }, {
+          "name" : "userId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/PermissionDTO"
                 }
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "delete": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "deleteDomainPermissions",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "userId",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "delete" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "deleteDomainPermissions",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PermissionDTO"
+        }, {
+          "name" : "userId",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/PermissionDTO"
                 }
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -1502,165 +1325,145 @@
         }
       }
     },
-    "/api/domains": {
-      "get": {
-        "tags": [
-          "domain-controller"
-        ],
-        "operationId": "searchDomains",
-        "parameters": [
-          {
-            "name": "query",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/domains" : {
+      "get" : {
+        "tags" : [ "domain-controller" ],
+        "operationId" : "searchDomains",
+        "parameters" : [ {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "put": {
-        "tags": [
-          "domain-controller"
-        ],
-        "operationId": "updateDomain",
-        "parameters": [
-          {
-            "name": "name",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "put" : {
+        "tags" : [ "domain-controller" ],
+        "operationId" : "updateDomain",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DomainDTO"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/DomainDTO"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "post": {
-        "tags": [
-          "domain-controller"
-        ],
-        "operationId": "createDomain",
-        "parameters": [
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "post" : {
+        "tags" : [ "domain-controller" ],
+        "operationId" : "createDomain",
+        "parameters" : [ {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DomainDTO"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/DomainDTO"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "delete": {
-        "tags": [
-          "domain-controller"
-        ],
-        "operationId": "deleteDomain",
-        "parameters": [
-          {
-            "name": "name",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "recursive",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "delete" : {
+        "tags" : [ "domain-controller" ],
+        "operationId" : "deleteDomain",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "recursive",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -1668,54 +1471,47 @@
         }
       }
     },
-    "/api/domains/{domainName}/salt": {
-      "put": {
-        "tags": [
-          "domain-controller"
-        ],
-        "operationId": "updateSalt",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "salt",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "allowEmpty",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/domains/{domainName}/salt" : {
+      "put" : {
+        "tags" : [ "domain-controller" ],
+        "operationId" : "updateSalt",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "salt",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "allowEmpty",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean",
+            "default" : false
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -1723,230 +1519,202 @@
         }
       }
     },
-    "/api/domains/{domainName}/pseudonyms": {
-      "get": {
-        "tags": [
-          "pseudonym-controller"
-        ],
-        "operationId": "searchPseudonyms",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "query",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "psn",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "idType",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+    "/api/domains/{domainName}/pseudonyms" : {
+      "get" : {
+        "tags" : [ "pseudonym-controller" ],
+        "operationId" : "searchPseudonyms",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "psn",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "id",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "idType",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "put": {
-        "tags": [
-          "pseudonym-controller"
-        ],
-        "operationId": "updatePseudonym",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "put" : {
+        "tags" : [ "pseudonym-controller" ],
+        "operationId" : "updatePseudonym",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PseudonymUpdateDTO"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PseudonymUpdateDTO"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "post": {
-        "tags": [
-          "pseudonym-controller"
-        ],
-        "operationId": "createPseudonym",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "omitPrefix",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "post" : {
+        "tags" : [ "pseudonym-controller" ],
+        "operationId" : "createPseudonym",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PseudonymDTO"
+        }, {
+          "name" : "omitPrefix",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean",
+            "default" : false
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PseudonymDTO"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "delete": {
-        "tags": [
-          "pseudonym-controller"
-        ],
-        "operationId": "deletePseudonym",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "idType",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "psn",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "delete" : {
+        "tags" : [ "pseudonym-controller" ],
+        "operationId" : "deletePseudonym",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "id",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "idType",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "psn",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -1954,55 +1722,49 @@
         }
       }
     },
-    "/api/domains/{domainName}/pseudonyms/complete": {
-      "put": {
-        "tags": [
-          "pseudonym-controller"
-        ],
-        "operationId": "updatePseudonymComplete",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "regeneratePseudonym",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/domains/{domainName}/pseudonyms/complete" : {
+      "put" : {
+        "tags" : [ "pseudonym-controller" ],
+        "operationId" : "updatePseudonymComplete",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PseudonymUpdateDTO"
+        }, {
+          "name" : "regeneratePseudonym",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PseudonymUpdateDTO"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -2010,180 +1772,159 @@
         }
       }
     },
-    "/api/domains/{domainName}/pseudonyms/batch": {
-      "get": {
-        "tags": [
-          "pseudonym-controller"
-        ],
-        "operationId": "getPseudonymBatch",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/domains/{domainName}/pseudonyms/batch" : {
+      "get" : {
+        "tags" : [ "pseudonym-controller" ],
+        "operationId" : "getPseudonymBatch",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "put": {
-        "tags": [
-          "pseudonym-controller"
-        ],
-        "operationId": "updatePseudonymBatch",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "put" : {
+        "tags" : [ "pseudonym-controller" ],
+        "operationId" : "updatePseudonymBatch",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PseudonymUpdateDTO"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/PseudonymUpdateDTO"
                 }
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "post": {
-        "tags": [
-          "pseudonym-controller"
-        ],
-        "operationId": "createPseudonymBatch",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "omitPrefix",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "post" : {
+        "tags" : [ "pseudonym-controller" ],
+        "operationId" : "createPseudonymBatch",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PseudonymDTO"
+        }, {
+          "name" : "omitPrefix",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean",
+            "default" : false
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/PseudonymDTO"
                 }
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "delete": {
-        "tags": [
-          "pseudonym-controller"
-        ],
-        "operationId": "deletePseudonymBatch",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "delete" : {
+        "tags" : [ "pseudonym-controller" ],
+        "operationId" : "deletePseudonymBatch",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -2191,93 +1932,83 @@
         }
       }
     },
-    "/api/domains/complete": {
-      "put": {
-        "tags": [
-          "domain-controller"
-        ],
-        "operationId": "updateDomainComplete",
-        "parameters": [
-          {
-            "name": "name",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "recursive",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/domains/complete" : {
+      "put" : {
+        "tags" : [ "domain-controller" ],
+        "operationId" : "updateDomainComplete",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DomainDTO"
+        }, {
+          "name" : "recursive",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/DomainDTO"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "post": {
-        "tags": [
-          "domain-controller"
-        ],
-        "operationId": "createDomainComplete",
-        "parameters": [
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "post" : {
+        "tags" : [ "domain-controller" ],
+        "operationId" : "createDomainComplete",
+        "parameters" : [ {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DomainDTO"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/DomainDTO"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -2285,76 +2016,67 @@
         }
       }
     },
-    "/api/projects": {
-      "get": {
-        "tags": [
-          "project-controller"
-        ],
-        "operationId": "getProjectsWithAccessTo",
-        "parameters": [
-          {
-            "name": "all",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/projects" : {
+      "get" : {
+        "tags" : [ "project-controller" ],
+        "operationId" : "getProjectsWithAccessTo",
+        "parameters" : [ {
+          "name" : "all",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean",
+            "default" : false
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "post": {
-        "tags": [
-          "project-controller"
-        ],
-        "operationId": "createProject",
-        "parameters": [
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "post" : {
+        "tags" : [ "project-controller" ],
+        "operationId" : "createProject",
+        "parameters" : [ {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectDTO"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProjectDTO"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -2362,115 +2084,101 @@
         }
       }
     },
-    "/api/projects/{projectAbbreviation}/entities/{entityTypeName}": {
-      "get": {
-        "tags": [
-          "entity-controller"
-        ],
-        "operationId": "searchEntity",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "entityTypeName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "query",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/projects/{projectAbbreviation}/entities/{entityTypeName}" : {
+      "get" : {
+        "tags" : [ "entity-controller" ],
+        "operationId" : "searchEntity",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "entityTypeName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "post": {
-        "tags": [
-          "entity-controller"
-        ],
-        "operationId": "createEntity",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "entityTypeName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "recordLinkageResolution",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "post" : {
+        "tags" : [ "entity-controller" ],
+        "operationId" : "createEntity",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EntityDTO"
+        }, {
+          "name" : "entityTypeName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "recordLinkageResolution",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EntityDTO"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -2478,55 +2186,49 @@
         }
       }
     },
-    "/api/projects/{projectAbbreviation}/entities/{entityTypeName}/record-linkage": {
-      "post": {
-        "tags": [
-          "entity-controller"
-        ],
-        "operationId": "recordLinkage",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "entityTypeName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/projects/{projectAbbreviation}/entities/{entityTypeName}/record-linkage" : {
+      "post" : {
+        "tags" : [ "entity-controller" ],
+        "operationId" : "recordLinkage",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EntityDTO"
+        }, {
+          "name" : "entityTypeName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EntityDTO"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -2534,47 +2236,42 @@
         }
       }
     },
-    "/api/projects/{projectAbbreviation}/entities/config": {
-      "post": {
-        "tags": [
-          "entity-type-controller"
-        ],
-        "operationId": "createProjectEntityType",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/projects/{projectAbbreviation}/entities/config" : {
+      "post" : {
+        "tags" : [ "entity-type-controller" ],
+        "operationId" : "createProjectEntityType",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EntityTypeDTO"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EntityTypeDTO"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -2582,75 +2279,66 @@
         }
       }
     },
-    "/api/entities/base-types": {
-      "get": {
-        "tags": [
-          "entity-type-controller"
-        ],
-        "operationId": "searchBaseEntityType",
-        "parameters": [
-          {
-            "name": "query",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/entities/base-types" : {
+      "get" : {
+        "tags" : [ "entity-type-controller" ],
+        "operationId" : "searchBaseEntityType",
+        "parameters" : [ {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
           }
         }
       },
-      "post": {
-        "tags": [
-          "entity-type-controller"
-        ],
-        "operationId": "createBaseEntityType",
-        "parameters": [
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+      "post" : {
+        "tags" : [ "entity-type-controller" ],
+        "operationId" : "createBaseEntityType",
+        "parameters" : [ {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EntityTypeDTO"
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EntityTypeDTO"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -2658,38 +2346,33 @@
         }
       }
     },
-    "/api/system/statistics": {
-      "get": {
-        "tags": [
-          "system-controller"
-        ],
-        "operationId": "getSystemStatistics",
-        "parameters": [
-          {
-            "name": "exact",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/system/statistics" : {
+      "get" : {
+        "tags" : [ "system-controller" ],
+        "operationId" : "getSystemStatistics",
+        "parameters" : [ {
+          "name" : "exact",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean",
+            "default" : false
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -2697,46 +2380,40 @@
         }
       }
     },
-    "/api/projects/{projectAbbreviation}/statistics": {
-      "get": {
-        "tags": [
-          "project-controller"
-        ],
-        "operationId": "getProjectStatistics",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "exact",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/projects/{projectAbbreviation}/statistics" : {
+      "get" : {
+        "tags" : [ "project-controller" ],
+        "operationId" : "getProjectStatistics",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "exact",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean",
+            "default" : false
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -2744,45 +2421,39 @@
         }
       }
     },
-    "/api/projects/{projectAbbreviation}/entities": {
-      "get": {
-        "tags": [
-          "entity-type-controller"
-        ],
-        "operationId": "searchProjectEntityType",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "query",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/projects/{projectAbbreviation}/entities" : {
+      "get" : {
+        "tags" : [ "entity-type-controller" ],
+        "operationId" : "searchProjectEntityType",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -2790,53 +2461,46 @@
         }
       }
     },
-    "/api/projects/{projectAbbreviation}/entities/{entityTypeName}/{trustDeckId}/pseudonyms": {
-      "get": {
-        "tags": [
-          "entity-controller"
-        ],
-        "operationId": "getAllPseudonymsForEntity",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "entityTypeName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "trustDeckId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/projects/{projectAbbreviation}/entities/{entityTypeName}/{trustDeckId}/pseudonyms" : {
+      "get" : {
+        "tags" : [ "entity-controller" ],
+        "operationId" : "getAllPseudonymsForEntity",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "entityTypeName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "trustDeckId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -2844,37 +2508,32 @@
         }
       }
     },
-    "/api/projects/{projectAbbreviation}/domains": {
-      "get": {
-        "tags": [
-          "project-controller"
-        ],
-        "operationId": "getProjectDomains",
-        "parameters": [
-          {
-            "name": "projectAbbreviation",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/projects/{projectAbbreviation}/domains" : {
+      "get" : {
+        "tags" : [ "project-controller" ],
+        "operationId" : "getProjectDomains",
+        "parameters" : [ {
+          "name" : "projectAbbreviation",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -2882,37 +2541,32 @@
         }
       }
     },
-    "/api/permissions": {
-      "get": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "getAllPermissions",
-        "parameters": [
-          {
-            "name": "scope",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/permissions" : {
+      "get" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "getAllPermissions",
+        "parameters" : [ {
+          "name" : "scope",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -2920,37 +2574,32 @@
         }
       }
     },
-    "/api/permissions/users": {
-      "get": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "searchUsers",
-        "parameters": [
-          {
-            "name": "query",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/permissions/users" : {
+      "get" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "searchUsers",
+        "parameters" : [ {
+          "name" : "query",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -2958,29 +2607,25 @@
         }
       }
     },
-    "/api/permissions/me": {
-      "get": {
-        "tags": [
-          "permission-controller"
-        ],
-        "operationId": "getOwnPermissions",
-        "parameters": [
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/permissions/me" : {
+      "get" : {
+        "tags" : [ "permission-controller" ],
+        "operationId" : "getOwnPermissions",
+        "parameters" : [ {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -2988,19 +2633,17 @@
         }
       }
     },
-    "/api/health": {
-      "get": {
-        "tags": [
-          "api-controller"
-        ],
-        "operationId": "ping",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+    "/api/health" : {
+      "get" : {
+        "tags" : [ "api-controller" ],
+        "operationId" : "ping",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -3008,37 +2651,32 @@
         }
       }
     },
-    "/api/entities/base-types/{entityTypeName}": {
-      "get": {
-        "tags": [
-          "entity-type-controller"
-        ],
-        "operationId": "getBaseEntityType",
-        "parameters": [
-          {
-            "name": "entityTypeName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/entities/base-types/{entityTypeName}" : {
+      "get" : {
+        "tags" : [ "entity-type-controller" ],
+        "operationId" : "getBaseEntityType",
+        "parameters" : [ {
+          "name" : "entityTypeName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -3046,37 +2684,32 @@
         }
       }
     },
-    "/api/domains/{domainName}": {
-      "get": {
-        "tags": [
-          "domain-controller"
-        ],
-        "operationId": "getDomain",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/domains/{domainName}" : {
+      "get" : {
+        "tags" : [ "domain-controller" ],
+        "operationId" : "getDomain",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -3084,45 +2717,39 @@
         }
       }
     },
-    "/api/domains/{domainName}/{attribute}": {
-      "get": {
-        "tags": [
-          "domain-controller"
-        ],
-        "operationId": "getDomainAttribute",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "attribute",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/domains/{domainName}/{attribute}" : {
+      "get" : {
+        "tags" : [ "domain-controller" ],
+        "operationId" : "getDomainAttribute",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "attribute",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -3130,37 +2757,32 @@
         }
       }
     },
-    "/api/domains/{domainName}/subtree": {
-      "get": {
-        "tags": [
-          "domain-controller"
-        ],
-        "operationId": "getDomainSubtree",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/domains/{domainName}/subtree" : {
+      "get" : {
+        "tags" : [ "domain-controller" ],
+        "operationId" : "getDomainSubtree",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -3168,45 +2790,39 @@
         }
       }
     },
-    "/api/domains/{domainName}/pseudonyms/validation": {
-      "get": {
-        "tags": [
-          "pseudonym-controller"
-        ],
-        "operationId": "validatePseudonym",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "psn",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/domains/{domainName}/pseudonyms/validation" : {
+      "get" : {
+        "tags" : [ "pseudonym-controller" ],
+        "operationId" : "validatePseudonym",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "psn",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -3214,69 +2830,60 @@
         }
       }
     },
-    "/api/domains/linked-pseudonyms": {
-      "get": {
-        "tags": [
-          "pseudonym-controller"
-        ],
-        "operationId": "getLinkedPseudonyms",
-        "parameters": [
-          {
-            "name": "sourceDomain",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "targetDomain",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "sourceIdentifier",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "sourceIdType",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "sourcePsn",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/domains/linked-pseudonyms" : {
+      "get" : {
+        "tags" : [ "pseudonym-controller" ],
+        "operationId" : "getLinkedPseudonyms",
+        "parameters" : [ {
+          "name" : "sourceDomain",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        }, {
+          "name" : "targetDomain",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "sourceIdentifier",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "sourceIdType",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "sourcePsn",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -3284,29 +2891,25 @@
         }
       }
     },
-    "/api/domains/hierarchy": {
-      "get": {
-        "tags": [
-          "domain-controller"
-        ],
-        "operationId": "listDomainHierarchy",
-        "parameters": [
-          {
-            "name": "accept",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
+    "/api/domains/hierarchy" : {
+      "get" : {
+        "tags" : [ "domain-controller" ],
+        "operationId" : "listDomainHierarchy",
+        "parameters" : [ {
+          "name" : "accept",
+          "in" : "header",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -3314,29 +2917,25 @@
         }
       }
     },
-    "/api/tables/{tableName}": {
-      "delete": {
-        "tags": [
-          "database-maintenance-controller"
-        ],
-        "operationId": "clearTable",
-        "parameters": [
-          {
-            "name": "tableName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+    "/api/tables/{tableName}" : {
+      "delete" : {
+        "tags" : [ "database-maintenance-controller" ],
+        "operationId" : "clearTable",
+        "parameters" : [ {
+          "name" : "tableName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -3344,29 +2943,25 @@
         }
       }
     },
-    "/api/roles/{domainName}": {
-      "delete": {
-        "tags": [
-          "database-maintenance-controller"
-        ],
-        "operationId": "deleteDomainRightsAndRoles",
-        "parameters": [
-          {
-            "name": "domainName",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
+    "/api/roles/{domainName}" : {
+      "delete" : {
+        "tags" : [ "database-maintenance-controller" ],
+        "operationId" : "deleteDomainRightsAndRoles",
+        "parameters" : [ {
+          "name" : "domainName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "type": "object"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "object"
                 }
               }
             }
@@ -3375,505 +2970,479 @@
       }
     }
   },
-  "components": {
-    "schemas": {
-      "ProjectDTO": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
+  "components" : {
+    "schemas" : {
+      "ProjectDTO" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
           },
-          "abbreviation": {
-            "type": "string"
+          "abbreviation" : {
+            "type" : "string"
           },
-          "startDate": {
-            "type": "string",
-            "format": "date-time"
+          "startDate" : {
+            "type" : "string",
+            "format" : "date-time"
           },
-          "endDate": {
-            "type": "string",
-            "format": "date-time"
+          "endDate" : {
+            "type" : "string",
+            "format" : "date-time"
           },
-          "storeEntities": {
-            "type": "boolean"
+          "storeEntities" : {
+            "type" : "boolean"
           },
-          "storePseudonyms": {
-            "type": "boolean"
+          "storePseudonyms" : {
+            "type" : "boolean"
           },
-          "description": {
-            "type": "string"
+          "description" : {
+            "type" : "string"
           }
         }
       },
-      "EntityDTO": {
-        "type": "object",
-        "properties": {
-          "trustdeckID": {
-            "type": "string",
-            "format": "uuid"
+      "EntityDTO" : {
+        "type" : "object",
+        "properties" : {
+          "trustdeckID" : {
+            "type" : "string",
+            "format" : "uuid"
           },
-          "projectName": {
-            "type": "string"
+          "projectName" : {
+            "type" : "string"
           },
-          "entityTypeName": {
-            "type": "string"
+          "entityTypeName" : {
+            "type" : "string"
           },
-          "isDeleted": {
-            "type": "boolean"
+          "isDeleted" : {
+            "type" : "boolean"
           },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
+          "createdAt" : {
+            "type" : "string",
+            "format" : "date-time"
           },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
+          "updatedAt" : {
+            "type" : "string",
+            "format" : "date-time"
           },
-          "data": {
-            "$ref": "#/components/schemas/JsonNode"
+          "data" : {
+            "$ref" : "#/components/schemas/JsonNode"
           }
         }
       },
-      "JsonNode": {
-        "type": "object",
-        "properties": {
-          "valueNode": {
-            "type": "boolean"
+      "JsonNode" : {
+        "type" : "object",
+        "properties" : {
+          "string" : {
+            "type" : "boolean"
           },
-          "object": {
-            "type": "boolean"
+          "container" : {
+            "type" : "boolean"
           },
-          "nodeType": {
-            "type": "string",
-            "enum": [
-              "ARRAY",
-              "BINARY",
-              "BOOLEAN",
-              "MISSING",
-              "NULL",
-              "NUMBER",
-              "OBJECT",
-              "POJO",
-              "STRING"
-            ]
+          "valueNode" : {
+            "type" : "boolean"
           },
-          "pojo": {
-            "type": "boolean"
+          "object" : {
+            "type" : "boolean"
           },
-          "number": {
-            "type": "boolean"
+          "nodeType" : {
+            "type" : "string",
+            "enum" : [ "ARRAY", "BINARY", "BOOLEAN", "MISSING", "NULL", "NUMBER", "OBJECT", "POJO", "STRING" ]
           },
-          "short": {
-            "type": "boolean"
+          "pojo" : {
+            "type" : "boolean"
           },
-          "int": {
-            "type": "boolean"
+          "number" : {
+            "type" : "boolean"
           },
-          "long": {
-            "type": "boolean"
+          "short" : {
+            "type" : "boolean"
           },
-          "double": {
-            "type": "boolean"
+          "int" : {
+            "type" : "boolean"
           },
-          "bigDecimal": {
-            "type": "boolean"
+          "long" : {
+            "type" : "boolean"
           },
-          "bigInteger": {
-            "type": "boolean"
+          "double" : {
+            "type" : "boolean"
           },
-          "textual": {
-            "type": "boolean",
-            "deprecated": true
+          "bigDecimal" : {
+            "type" : "boolean"
           },
-          "boolean": {
-            "type": "boolean"
+          "bigInteger" : {
+            "type" : "boolean"
           },
-          "binary": {
-            "type": "boolean"
+          "textual" : {
+            "type" : "boolean",
+            "deprecated" : true
           },
-          "floatingPointNumber": {
-            "type": "boolean"
+          "boolean" : {
+            "type" : "boolean"
           },
-          "missingNode": {
-            "type": "boolean"
+          "binary" : {
+            "type" : "boolean"
           },
-          "integralNumber": {
-            "type": "boolean"
+          "floatingPointNumber" : {
+            "type" : "boolean"
           },
-          "string": {
-            "type": "boolean"
+          "missingNode" : {
+            "type" : "boolean"
           },
-          "container": {
-            "type": "boolean"
+          "integralNumber" : {
+            "type" : "boolean"
           },
-          "array": {
-            "type": "boolean"
+          "array" : {
+            "type" : "boolean"
           },
-          "empty": {
-            "type": "boolean"
+          "empty" : {
+            "type" : "boolean"
           },
-          "null": {
-            "type": "boolean"
+          "null" : {
+            "type" : "boolean"
           },
-          "float": {
-            "type": "boolean"
+          "float" : {
+            "type" : "boolean"
           },
-          "embeddedValue": {
-            "type": "boolean"
+          "embeddedValue" : {
+            "type" : "boolean"
           }
         }
       },
-      "EntityTypeDTO": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
+      "EntityTypeDTO" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
           },
-          "version": {
-            "type": "string"
+          "version" : {
+            "type" : "string"
           },
-          "isDeprecated": {
-            "type": "boolean"
+          "isDeprecated" : {
+            "type" : "boolean"
           },
-          "isBaseType": {
-            "type": "boolean"
+          "isBaseType" : {
+            "type" : "boolean"
           },
-          "baseTypeName": {
-            "type": "string"
+          "baseTypeName" : {
+            "type" : "string"
           },
-          "projectName": {
-            "type": "string"
+          "projectName" : {
+            "type" : "string"
           },
-          "associatedDomainName": {
-            "type": "string"
+          "associatedDomainName" : {
+            "type" : "string"
           },
-          "typeDefinition": {
-            "$ref": "#/components/schemas/JsonNode"
+          "typeDefinition" : {
+            "$ref" : "#/components/schemas/JsonNode"
           }
         }
       },
-      "PermissionDTO": {
-        "type": "object",
-        "properties": {
-          "subjectId": {
-            "type": "string"
+      "PermissionDTO" : {
+        "type" : "object",
+        "properties" : {
+          "subjectId" : {
+            "type" : "string"
           },
-          "resourceType": {
-            "type": "string"
+          "resourceType" : {
+            "type" : "string"
           },
-          "domainName": {
-            "type": "string"
+          "domainName" : {
+            "type" : "string"
           },
-          "projectAbbreviation": {
-            "type": "string"
+          "projectAbbreviation" : {
+            "type" : "string"
           },
-          "entityTypeName": {
-            "type": "string"
+          "entityTypeName" : {
+            "type" : "string"
           },
-          "action": {
-            "type": "string"
+          "action" : {
+            "type" : "string"
           },
-          "decision": {
-            "type": "string"
+          "decision" : {
+            "type" : "string"
           },
-          "validFrom": {
-            "type": "string",
-            "format": "date-time"
+          "validFrom" : {
+            "type" : "string",
+            "format" : "date-time"
           },
-          "validTo": {
-            "type": "string",
-            "format": "date-time"
+          "validTo" : {
+            "type" : "string",
+            "format" : "date-time"
           },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
+          "createdAt" : {
+            "type" : "string",
+            "format" : "date-time"
           },
-          "createdBy": {
-            "type": "string"
+          "createdBy" : {
+            "type" : "string"
           },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
+          "updatedAt" : {
+            "type" : "string",
+            "format" : "date-time"
           },
-          "updatedBy": {
-            "type": "string"
+          "updatedBy" : {
+            "type" : "string"
           }
         }
       },
-      "AlgorithmDTO": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
+      "AlgorithmDTO" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
           },
-          "alphabet": {
-            "type": "string"
+          "alphabet" : {
+            "type" : "string"
           },
-          "randomAlgorithmDesiredSize": {
-            "type": "integer",
-            "format": "int64"
+          "randomAlgorithmDesiredSize" : {
+            "type" : "integer",
+            "format" : "int64"
           },
-          "randomAlgorithmDesiredSuccessProbability": {
-            "type": "number",
-            "format": "double"
+          "randomAlgorithmDesiredSuccessProbability" : {
+            "type" : "number",
+            "format" : "double"
           },
-          "consecutiveValueCounter": {
-            "type": "integer",
-            "format": "int64"
+          "consecutiveValueCounter" : {
+            "type" : "integer",
+            "format" : "int64"
           },
-          "pseudonymLength": {
-            "type": "integer",
-            "format": "int32"
+          "pseudonymLength" : {
+            "type" : "integer",
+            "format" : "int32"
           },
-          "paddingCharacter": {
-            "type": "string"
+          "paddingCharacter" : {
+            "type" : "string"
           },
-          "addCheckDigit": {
-            "type": "boolean"
+          "addCheckDigit" : {
+            "type" : "boolean"
           },
-          "lengthIncludesCheckDigit": {
-            "type": "boolean"
+          "lengthIncludesCheckDigit" : {
+            "type" : "boolean"
           },
-          "salt": {
-            "type": "string"
+          "salt" : {
+            "type" : "string"
           },
-          "saltLength": {
-            "type": "integer",
-            "format": "int32"
+          "saltLength" : {
+            "type" : "integer",
+            "format" : "int32"
           }
         }
       },
-      "DomainDTO": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
+      "DomainDTO" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int32"
           },
-          "name": {
-            "type": "string"
+          "name" : {
+            "type" : "string"
           },
-          "prefix": {
-            "type": "string"
+          "prefix" : {
+            "type" : "string"
           },
-          "validFromInherited": {
-            "type": "boolean"
+          "validFromInherited" : {
+            "type" : "boolean"
           },
-          "validToInherited": {
-            "type": "boolean"
+          "validToInherited" : {
+            "type" : "boolean"
           },
-          "validityTime": {
-            "type": "string"
+          "validityTime" : {
+            "type" : "string"
           },
-          "enforceStartDateValidity": {
-            "type": "boolean"
+          "enforceStartDateValidity" : {
+            "type" : "boolean"
           },
-          "enforceStartDateValidityInherited": {
-            "type": "boolean"
+          "enforceStartDateValidityInherited" : {
+            "type" : "boolean"
           },
-          "enforceEndDateValidity": {
-            "type": "boolean"
+          "enforceEndDateValidity" : {
+            "type" : "boolean"
           },
-          "enforceEndDateValidityInherited": {
-            "type": "boolean"
+          "enforceEndDateValidityInherited" : {
+            "type" : "boolean"
           },
-          "algorithm": {
-            "$ref": "#/components/schemas/AlgorithmDTO"
+          "algorithm" : {
+            "$ref" : "#/components/schemas/AlgorithmDTO"
           },
-          "algorithmInherited": {
-            "type": "boolean"
+          "algorithmInherited" : {
+            "type" : "boolean"
           },
-          "multiplePsnAllowed": {
-            "type": "boolean"
+          "multiplePsnAllowed" : {
+            "type" : "boolean"
           },
-          "multiplePsnAllowedInherited": {
-            "type": "boolean"
+          "multiplePsnAllowedInherited" : {
+            "type" : "boolean"
           },
-          "description": {
-            "type": "string"
+          "description" : {
+            "type" : "string"
           },
-          "superDomainID": {
-            "type": "integer",
-            "format": "int32"
+          "superDomainID" : {
+            "type" : "integer",
+            "format" : "int32"
           },
-          "superDomainName": {
-            "type": "string"
+          "superDomainName" : {
+            "type" : "string"
           },
-          "projectAbbreviation": {
-            "type": "string"
+          "projectAbbreviation" : {
+            "type" : "string"
           },
-          "validFrom": {
-            "type": "string"
+          "validFrom" : {
+            "type" : "string"
           },
-          "validTo": {
-            "type": "string"
+          "validTo" : {
+            "type" : "string"
           }
         }
       },
-      "Domain": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
+      "Domain" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int32"
           },
-          "name": {
-            "type": "string"
+          "name" : {
+            "type" : "string"
           },
-          "prefix": {
-            "type": "string"
+          "prefix" : {
+            "type" : "string"
           },
-          "validfrom": {
-            "type": "string",
-            "format": "date-time"
+          "validfrom" : {
+            "type" : "string",
+            "format" : "date-time"
           },
-          "validfrominherited": {
-            "type": "boolean"
+          "validfrominherited" : {
+            "type" : "boolean"
           },
-          "validto": {
-            "type": "string",
-            "format": "date-time"
+          "validto" : {
+            "type" : "string",
+            "format" : "date-time"
           },
-          "validtoinherited": {
-            "type": "boolean"
+          "validtoinherited" : {
+            "type" : "boolean"
           },
-          "enforcestartdatevalidity": {
-            "type": "boolean"
+          "enforcestartdatevalidity" : {
+            "type" : "boolean"
           },
-          "enforcestartdatevalidityinherited": {
-            "type": "boolean"
+          "enforcestartdatevalidityinherited" : {
+            "type" : "boolean"
           },
-          "enforceenddatevalidity": {
-            "type": "boolean"
+          "enforceenddatevalidity" : {
+            "type" : "boolean"
           },
-          "enforceenddatevalidityinherited": {
-            "type": "boolean"
+          "enforceenddatevalidityinherited" : {
+            "type" : "boolean"
           },
-          "multiplepsnallowed": {
-            "type": "boolean"
+          "multiplepsnallowed" : {
+            "type" : "boolean"
           },
-          "multiplepsnallowedinherited": {
-            "type": "boolean"
+          "multiplepsnallowedinherited" : {
+            "type" : "boolean"
           },
-          "description": {
-            "type": "string"
+          "description" : {
+            "type" : "string"
           },
-          "superdomainid": {
-            "type": "integer",
-            "format": "int32"
+          "superdomainid" : {
+            "type" : "integer",
+            "format" : "int32"
           },
-          "algorithmId": {
-            "type": "integer",
-            "format": "int32"
+          "algorithmId" : {
+            "type" : "integer",
+            "format" : "int32"
           },
-          "algorithmInherited": {
-            "type": "boolean"
+          "algorithmInherited" : {
+            "type" : "boolean"
           },
-          "projectId": {
-            "type": "integer",
-            "format": "int32"
+          "projectId" : {
+            "type" : "integer",
+            "format" : "int32"
           }
         },
-        "required": [
-          "algorithmId",
-          "algorithmInherited",
-          "enforceenddatevalidity",
-          "enforceenddatevalidityinherited",
-          "enforcestartdatevalidity",
-          "enforcestartdatevalidityinherited",
-          "multiplepsnallowed",
-          "multiplepsnallowedinherited",
-          "name",
-          "prefix",
-          "projectId",
-          "validfrom",
-          "validfrominherited",
-          "validto",
-          "validtoinherited"
-        ]
+        "required" : [ "algorithmId", "algorithmInherited", "enforceenddatevalidity", "enforceenddatevalidityinherited", "enforcestartdatevalidity", "enforcestartdatevalidityinherited", "multiplepsnallowed", "multiplepsnallowedinherited", "name", "prefix", "projectId", "validfrom", "validfrominherited", "validto", "validtoinherited" ]
       },
-      "IdentifierItem": {
-        "type": "object",
-        "properties": {
-          "identifier": {
-            "type": "string"
+      "IdentifierItem" : {
+        "type" : "object",
+        "properties" : {
+          "identifier" : {
+            "type" : "string"
           },
-          "idType": {
-            "type": "string"
+          "idType" : {
+            "type" : "string"
           }
         }
       },
-      "PseudonymUpdateDTO": {
-        "type": "object",
-        "properties": {
-          "oldIdentifierItem": {
-            "$ref": "#/components/schemas/IdentifierItem"
+      "PseudonymUpdateDTO" : {
+        "type" : "object",
+        "properties" : {
+          "oldIdentifierItem" : {
+            "$ref" : "#/components/schemas/IdentifierItem"
           },
-          "oldPsn": {
-            "type": "string"
+          "oldPsn" : {
+            "type" : "string"
           },
-          "oldDomain": {
-            "$ref": "#/components/schemas/Domain"
+          "oldDomain" : {
+            "$ref" : "#/components/schemas/Domain"
           },
-          "newIdentifierItem": {
-            "$ref": "#/components/schemas/IdentifierItem"
+          "newIdentifierItem" : {
+            "$ref" : "#/components/schemas/IdentifierItem"
           },
-          "newPsn": {
-            "type": "string"
+          "newPsn" : {
+            "type" : "string"
           },
-          "validFrom": {
-            "type": "string",
-            "format": "date-time"
+          "validFrom" : {
+            "type" : "string",
+            "format" : "date-time"
           },
-          "validFromInherited": {
-            "type": "boolean"
+          "validFromInherited" : {
+            "type" : "boolean"
           },
-          "validTo": {
-            "type": "string",
-            "format": "date-time"
+          "validTo" : {
+            "type" : "string",
+            "format" : "date-time"
           },
-          "validToInherited": {
-            "type": "boolean"
+          "validToInherited" : {
+            "type" : "boolean"
           },
-          "validityTime": {
-            "type": "string"
+          "validityTime" : {
+            "type" : "string"
           },
-          "newDomain": {
-            "$ref": "#/components/schemas/Domain"
+          "newDomain" : {
+            "$ref" : "#/components/schemas/Domain"
           },
-          "newDomainName": {
-            "type": "string"
+          "newDomainName" : {
+            "type" : "string"
           }
         }
       },
-      "PseudonymDTO": {
-        "type": "object",
-        "properties": {
-          "identifierItem": {
-            "$ref": "#/components/schemas/IdentifierItem"
+      "PseudonymDTO" : {
+        "type" : "object",
+        "properties" : {
+          "identifierItem" : {
+            "$ref" : "#/components/schemas/IdentifierItem"
           },
-          "psn": {
-            "type": "string"
+          "psn" : {
+            "type" : "string"
           },
-          "validFrom": {
-            "type": "string",
-            "format": "date-time"
+          "validFrom" : {
+            "type" : "string",
+            "format" : "date-time"
           },
-          "validFromInherited": {
-            "type": "boolean"
+          "validFromInherited" : {
+            "type" : "boolean"
           },
-          "validTo": {
-            "type": "string",
-            "format": "date-time"
+          "validTo" : {
+            "type" : "string",
+            "format" : "date-time"
           },
-          "validToInherited": {
-            "type": "boolean"
+          "validToInherited" : {
+            "type" : "boolean"
           },
-          "validityTime": {
-            "type": "string"
+          "validityTime" : {
+            "type" : "string"
           },
-          "domainName": {
-            "type": "string"
+          "domainName" : {
+            "type" : "string"
           }
         }
       }
