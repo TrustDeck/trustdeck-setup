@@ -78,10 +78,6 @@ Create the administrator's user in Keycloak, then grant them all global permissi
 
 The script restarts the backend container afterwards so that cached permissions are dropped. Rerunning it extends the permissions of that user.
 
-:::caution[Known issue]
-With the current Keycloak image (26.8.2) the script stops with `Keycloak user lookup request failed with HTTP 401`. Reported to the maintainers.
-:::
-
 ## Stop
 
 ```bash
@@ -93,10 +89,6 @@ With the current Keycloak image (26.8.2) the script stops with `Keycloak user lo
 If required, set up your reverse proxy (e.g. nginx, Apache).
 
 Exemplary nginx configuration that assumes Keycloak on port `8081` and the application on port `8080`:
-
-:::caution[Not verified]
-This configuration is taken unchanged from the previous documentation and was not tested in the walkthrough. Open question: the `/auth` block forwards to the `master` realm's certificate endpoint. Is that still correct?
-:::
 
 ```nginx
 server {

@@ -61,16 +61,14 @@ What the endpoint does, in a few sentences of Markdown.
 ## Updating the API spec
 
 After a backend release, run the workflow **Update API spec** (Actions tab) with
-the release tag. It pushes the new spec to the branch `api-spec/<tag>`; open a
-pull request from it and add or rename files in `api-docs/` where the check fails.
+the release tag. It exports the spec of that version and checks `api-docs/`
+against it; the log shows what changed. It does not push anything yet.
 
-Locally, with Java 21 and Maven:
+Locally, with Java 21, Maven and Node:
 
 ```bash
 bash scripts/export-api-spec.sh <path to a trustdeck-backend checkout>
 ```
 
-## Publishing
-
-The workflow **Docs** builds every pull request that touches `site/` and
-publishes `main` to GitHub Pages.
+Then commit the changes in `api/` and add or rename files in `api-docs/` where
+`npm run api-spec` fails.
