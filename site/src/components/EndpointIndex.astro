@@ -1,0 +1,86 @@
+---
+// All operations of the documented spec, grouped by tag, with a client-side filter.
+import { readFileSync } from 'node:fs';
+
+const spec = JSON.parse(readFileSync('api/openapi.documented.json', 'utf8'));
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const METHODS = ['get', 'post', 'put', 'patch', 'delete'];
+
+type Operation = { method: string; path: string; summary: string; href: string };
+const byTag = new Map<string, Operation[]>(spec.tags.map((t: { name: string }) => [t.name, []]));
+for (const [path, item] of Object.entries<Record<string, any>>(spec.paths)) {
+  for (const method of METHODS) {
+    const op = item[method];
+    if (!op) continue;
+    byTag.get(op.tags[0])?.push({
+      method,
+      path,
+      summary: op.summary,
+      href: `${base}/rest-api/reference/operations/${op.operationId.toLowerCase()}/`,
+    });
+  }
+}
+const groups = [...byTag].map(([tag, ops]) => ({
+  tag,
+  ops: ops.sort((a, b) => a.path.localeCompare(b.path) || METHODS.indexOf(a.method) - METHODS.indexOf(b.method)),
+}));
+const total = groups.reduce((n, g) => n + g.ops.length, 0);
+---
+
+<div class="td-endpoints not-content" data-total={total}>
+  <div class="td-endpoints-filter">
+    <label for="td-endpoint-filter">Filter endpoints</label>
+    <input id="td-endpoint-filter" type="search" autocomplete="off" spellcheck="false"
+      placeholder="Path, method or task, e.g. pseudonyms, DELETE, create" />
+    <p class="td-endpoints-count" aria-live="polite">{total} endpoints</p>
+  </div>
+
+  {groups.map((g) => (
+    <section data-group>
+      <h2>{g.tag}</h2>
+      <ul>
+        {g.ops.map((o) => (
+          <li data-search={`${o.method} ${o.path} ${o.summary}`.toLowerCase()}>
+            <a href={o.href}>
+              <span class={`td-method td-method-${o.method}`}>{o.method.toUpperCase()}</span>
+              <code>{o.path}</code>
+              <span>{o.summary}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+  <p class="td-endpoints-empty" hidden>No endpoint matches. Try a resource name such as <em>domains</em>, or clear the filter.</p>
+</div>
+
+<script>
+  const root = document.querySelector<HTMLElement>('.td-endpoints');
+  const input = root?.querySelector<HTMLInputElement>('#td-endpoint-filter');
+  if (root && input) {
+    const total = Number(root.dataset.total);
+    const rows = [...root.querySelectorAll<HTMLElement>('li[data-search]')];
+    const groups = [...root.querySelectorAll<HTMLElement>('[data-group]')];
+    const count = root.querySelector<HTMLElement>('.td-endpoints-count')!;
+    const empty = root.querySelector<HTMLElement>('.td-endpoints-empty')!;
+
+    input.addEventListener('input', () => {
+      const terms = input.value.toLowerCase().split(/\s+/).filter(Boolean);
+      let shown = 0;
+      for (const row of rows) {
+        row.hidden = !terms.every((t) => row.dataset.search!.includes(t));
+        if (!row.hidden) shown++;
+      }
+      for (const g of groups) g.hidden = !g.querySelector('li:not([hidden])');
+      count.textContent = terms.length ? `${shown} of ${total} endpoints` : `${total} endpoints`;
+      empty.hidden = shown > 0;
+    });
+    // "/" focuses the filter, as in many developer tools.
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement?.tagName !== 'INPUT') {
+        e.preventDefault();
+        input.focus();
+      }
+    });
+  }
+</script>

@@ -1,0 +1,5 @@
+node_modules/
+dist/
+.astro/
+# Generated from api/openapi.json and api-docs/ by `npm run api-spec`
+api/openapi.documented.json

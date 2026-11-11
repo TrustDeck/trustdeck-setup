@@ -1,0 +1,28 @@
+---
+title: TrustDeck Documentation
+description: Open-source pseudonymization and identity management for trusted third parties in medical research.
+template: splash
+editUrl: false
+hero:
+  title: TrustDeck Documentation
+  tagline: Open-source pseudonymization and identity management for trusted third parties in medical research.
+  actions:
+    - text: User documentation
+      link: /trustdeck-setup/user/
+      icon: right-arrow
+    - text: Developer documentation
+      link: /trustdeck-setup/start/
+      variant: minimal
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## Where do you want to start?
+
+<CardGrid>
+  <LinkCard title="Use the web interface" description="Manage projects, entities and pseudonyms in the browser." href="/trustdeck-setup/user/" />
+  <LinkCard title="Integrate via REST API" description="Run TrustDeck locally and create your first pseudonym with curl." href="/trustdeck-setup/quickstart/" />
+  <LinkCard title="Integrate with Java" description="Use the TrustDeck client library from Maven Central." href="/trustdeck-setup/java-client/getting-started/" />
+  <LinkCard title="Deploy and operate" description="Run the backend with Keycloak and PostgreSQL in Docker." href="/trustdeck-setup/deploy/" />
+  <LinkCard title="Understand TrustDeck" description="ACE and KING, projects, domains, pseudonyms and entities." href="/trustdeck-setup/concepts/" />
+</CardGrid>

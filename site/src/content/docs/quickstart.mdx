@@ -1,0 +1,278 @@
+---
+title: Quickstart
+description: Run TrustDeck on your machine and create your first pseudonym.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+This page gets TrustDeck running in **dev mode** and creates a pseudonym with `curl`.
+In dev mode, PostgreSQL and Keycloak run in Docker and the backend runs locally via Maven.
+
+## Prerequisites
+
+- Docker with the Compose plugin
+- Java 21 and Maven
+- `curl`, `jq` and `python3` (used by the permission script in step 4)
+- for the Java variant: your own Maven project
+
+## 1. Clone the repository
+
+```bash
+git clone https://github.com/TrustDeck/trustdeck-backend.git
+cd trustdeck-backend
+```
+
+## 2. Create `trustdeck.env`
+
+The startup script expects a file named `trustdeck.env` next to `trustdeck.sh`. Start from the example:
+
+```bash
+cp trustdeck.env.example trustdeck.env
+```
+
+The example is written for a deployment where everything runs in Docker. In dev mode the backend runs on your machine, so change these values:
+
+```bash title="trustdeck.env (changed lines)"
+DATABASE_TRUSTDECK_HOST=localhost
+KEYCLOAK_SERVER_URI=http://localhost:8081
+KEYCLOAK_HOSTNAME=http://localhost:8081
+KEYCLOAK_RELATIVE_PATH=
+HTTP_PROXY=
+HTTPS_PROXY=
+NO_PROXY=
+```
+
+The script exports every variable in this file to your shell. That is why the example proxy (`proxy.server.com`) has to be removed if you don't use one.
+
+:::tip
+For anything beyond local testing, change all passwords and secrets from the example.
+:::
+
+## 3. Start dev mode
+
+```bash
+./trustdeck.sh dev start
+```
+
+The script starts PostgreSQL and Keycloak, waits until both are healthy, then runs the backend in the foreground. It is ready when the log shows `Started Application`.
+
+The databases are initialized with an example Keycloak realm called `development`. It contains a confidential client `trustdeck` whose secret is set to `KEYCLOAK_CLIENT_SECRET` on first start.
+
+| Service | URL |
+|---|---|
+| TrustDeck backend | `http://localhost:8080` |
+| Keycloak (admin console: `KEYCLOAK_ADMIN_USER` / `KEYCLOAK_ADMIN_PASSWORD`) | `http://localhost:8081` |
+
+Check the backend in a second terminal:
+
+```bash
+curl http://localhost:8080/api/health
+```
+
+## 4. Give yourself permissions
+
+A new user has no permissions in TrustDeck. The bootstrap script grants a Keycloak user all global permissions. This quickstart uses the service account of the `trustdeck` client, so you don't need to create a user:
+
+```bash
+./src/main/resources/scripts/addInitialAdminUser.sh --username service-account-trustdeck
+```
+
+:::caution[Known issues (found during the walkthrough)]
+- With the current Keycloak image (`keycloak:latest`, 26.8.2) the script stops with `Keycloak user lookup request failed with HTTP 401`. Keycloak logs `Expected audience not available in the token`. This is reported to the maintainers.
+- In dev mode the script writes the permissions, then exits with `Backend container not found`, because the backend is not a container. The permissions are stored anyway.
+:::
+
+Restart the backend (<kbd>Ctrl</kbd>+<kbd>C</kbd>, then `./trustdeck.sh dev start` again) so that `GET /api/permissions/me` shows the new permissions.
+
+## 5. Create a project, a domain and a pseudonym
+
+Use plain HTTP or the Java client. The choice is kept on all pages.
+
+<Tabs syncKey="lang">
+<TabItem label="curl">
+
+**Get an access token**
+
+```bash
+source trustdeck.env
+TOKEN=$(curl -s \
+  -d grant_type=client_credentials \
+  -d client_id="$KEYCLOAK_CLIENT_ID" \
+  -d client_secret="$KEYCLOAK_CLIENT_SECRET" \
+  "http://localhost:8081/realms/$KEYCLOAK_REALM_NAME/protocol/openid-connect/token" \
+  | jq -r .access_token)
+```
+
+**Create a project, a domain and a pseudonym**
+
+Domains belong to a project, so create the project first:
+
+```bash
+curl -X POST http://localhost:8080/api/projects \
+  -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+  -d '{"name": "Study A", "abbreviation": "study-a"}'
+```
+
+Create a domain in this project. The prefix is put in front of every pseudonym:
+
+```bash
+curl -X POST http://localhost:8080/api/domains \
+  -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+  -d '{"name": "study-a-patients", "prefix": "SA-", "projectAbbreviation": "study-a"}'
+```
+
+Create a pseudonym for an identifier:
+
+```bash
+curl -X POST http://localhost:8080/api/domains/study-a-patients/pseudonyms \
+  -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+  -d '{"identifierItem": {"identifier": "4711", "idType": "patient-number"}}'
+```
+
+```json title="Response (201 Created)"
+{
+  "identifierItem": { "identifier": "4711", "idType": "patient-number" },
+  "psn": "SA-J02IPWLG72J",
+  "validFrom": "2026-11-10T19:45:45.185867",
+  "validFromInherited": true,
+  "validTo": "2056-11-10T19:45:45.185867",
+  "validToInherited": true,
+  "domainName": "study-a-patients"
+}
+```
+
+Sending the same request again returns the existing pseudonym with `200`.
+
+**Look it up**
+
+```bash
+# by identifier
+curl "http://localhost:8080/api/domains/study-a-patients/pseudonyms?id=4711&idType=patient-number" \
+  -H "Authorization: Bearer $TOKEN"
+
+# by pseudonym
+curl "http://localhost:8080/api/domains/study-a-patients/pseudonyms?psn=SA-J02IPWLG72J" \
+  -H "Authorization: Bearer $TOKEN"
+```
+
+</TabItem>
+<TabItem label="Java client">
+
+Add the client from Maven Central to your project (Java 21 or newer):
+
+```xml title="pom.xml"
+<dependency>
+  <groupId>org.trustdeck</groupId>
+  <artifactId>client</artifactId>
+  <version>2.1.0</version>
+</dependency>
+```
+
+The client gets its tokens through an `AccessTokenProvider`. This one uses the service account of the `trustdeck` client, the one you gave permissions in step 4:
+
+```java title="src/main/java/example/Quickstart.java"
+package example;
+
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.trustdeck.client.AccessTokenProvider;
+import org.trustdeck.client.ProjectScope;
+import org.trustdeck.client.TrustDeckClient;
+import org.trustdeck.client.model.Domain;
+import org.trustdeck.client.model.Project;
+import org.trustdeck.client.model.Pseudonym;
+
+public class Quickstart {
+    public static void main(String[] args) {
+        AccessTokenProvider tokenProvider = () -> clientCredentialsToken(
+            System.getenv("TRUSTDECK_KEYCLOAK_URL"),
+            System.getenv("TRUSTDECK_REALM"),
+            System.getenv("TRUSTDECK_CLIENT_ID"),
+            System.getenv("TRUSTDECK_CLIENT_SECRET"));
+        TrustDeckClient trustdeck = new TrustDeckClient(System.getenv("TRUSTDECK_SERVICE_URL"), tokenProvider);
+
+        // Domains belong to a project, so create the project first.
+        trustdeck.projects().create(Project.builder()
+            .name("Study A")
+            .abbreviation("study-a")
+            .build());
+        ProjectScope studyA = trustdeck.project("study-a");
+
+        // The prefix is put in front of every pseudonym.
+        Domain domain = studyA.domains().create(Domain.builder()
+            .name("study-a-patients")
+            .prefix("SA-")
+            .build());
+
+        Pseudonym psn = studyA.pseudonyms(domain.getName()).create("4711", "patient-number", false);
+        System.out.println("Pseudonym: " + psn.getPsn());
+
+        Pseudonym read = studyA.pseudonyms(domain.getName()).get(psn.getPsn());
+        System.out.println("Identifier: " + read.getIdentifierItem().getIdentifier());
+    }
+
+    // Requests a new token on every call. Cache it until shortly before it expires in real applications.
+    static String clientCredentialsToken(String keycloakUrl, String realm, String clientId, String clientSecret) {
+        String form = "grant_type=client_credentials"
+            + "&client_id=" + URLEncoder.encode(clientId, StandardCharsets.UTF_8)
+            + "&client_secret=" + URLEncoder.encode(clientSecret, StandardCharsets.UTF_8);
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(keycloakUrl + "/realms/" + realm + "/protocol/openid-connect/token"))
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(form))
+            .build();
+        try {
+            HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+            return new ObjectMapper().readTree(response.body()).get("access_token").asText();
+        } catch (Exception e) {
+            throw new IllegalStateException("Could not get a token from Keycloak", e);
+        }
+    }
+}
+```
+
+Run it with the connection details from `trustdeck.env`:
+
+```bash
+source /path/to/trustdeck-backend/trustdeck.env
+export TRUSTDECK_SERVICE_URL=http://localhost:8080
+export TRUSTDECK_KEYCLOAK_URL=http://localhost:8081
+export TRUSTDECK_REALM="$KEYCLOAK_REALM_NAME"
+export TRUSTDECK_CLIENT_ID="$KEYCLOAK_CLIENT_ID"
+export TRUSTDECK_CLIENT_SECRET="$KEYCLOAK_CLIENT_SECRET"
+mvn compile exec:java -Dexec.mainClass=example.Quickstart
+```
+
+```text title="Output"
+Pseudonym: SA-V8EERFDRUEW
+Identifier: 4711
+```
+
+Running it again returns the existing project, domain and pseudonym. For a user account with password instead of a service account, see [Java client: Getting started](/trustdeck-setup/java-client/getting-started/).
+
+</TabItem>
+</Tabs>
+
+## Stop dev mode
+
+Stop the backend with <kbd>Ctrl</kbd>+<kbd>C</kbd>, then stop the containers:
+
+```bash
+docker compose -p trustdeck-dev --env-file trustdeck.env -f docker/docker-compose.dev.yml down
+```
+
+:::caution[Known issue]
+`./trustdeck.sh dev stop` reports `Dev stack stopped.`, but the containers keep running. `start` uses the Compose project name `trustdeck-dev` and `stop` uses `trustdeck`. Reported to the maintainers. Until it is fixed, use the command above.
+:::
+
+## Next steps
+
+- [Core concepts](/trustdeck-setup/concepts/): projects, domains, pseudonyms, algorithms, entities
+- [Authentication](/trustdeck-setup/rest-api/authentication/): tokens, permissions, 401 and 403
+- [Deploy](/trustdeck-setup/deploy/): run everything in Docker behind a reverse proxy

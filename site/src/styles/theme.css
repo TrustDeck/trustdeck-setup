@@ -1,0 +1,205 @@
+/* Colours, type and content rules. Layout modelled on linear.app/docs:
+   near-monochrome palette, Inter at 15/24, colour only on HTTP methods. */
+@import '@fontsource-variable/inter/wght.css';
+@import '@fontsource-variable/jetbrains-mono/wght.css';
+
+/* Metric-matched fallback, so text does not reflow when Inter has loaded. */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Helvetica');
+  size-adjust: 107.12%;
+  ascent-override: 90.44%;
+  descent-override: 22.52%;
+  line-gap-override: 0%;
+}
+
+/* Dark is Starlight's default theme. */
+:root {
+  --sl-font: 'Inter Variable', 'Inter Fallback', system-ui, sans-serif;
+  --sl-font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+
+  --sl-color-white: #f7f8f8; /* headings */
+  --sl-color-gray-1: #e6e8eb;
+  --sl-color-gray-2: #d0d6e0; /* body text */
+  --sl-color-gray-3: #8a8f98; /* secondary text */
+  --sl-color-gray-4: #62666d;
+  --sl-color-gray-5: #23252a; /* borders */
+  --sl-color-gray-6: #141516;
+  --sl-color-black: #08090a; /* page */
+  --sl-color-accent-low: #1c1d20;
+  --sl-color-accent: #f7f8f8;
+  --sl-color-accent-high: #f7f8f8;
+  --sl-color-bg-nav: #08090a;
+  --sl-color-bg-sidebar: #08090a;
+  --sl-color-hairline: #1e1f22;
+  --sl-color-hairline-light: #23252a;
+  --sl-color-hairline-shade: #1e1f22;
+  --sl-color-bg-inline-code: #1c1d20;
+
+  --td-surface: #0f1011;
+  --td-hover: #141516;
+  --td-get: #7aa7d9;
+  --td-post: #6cc08b;
+  --td-put: #d9b45a;
+  --td-delete: #e07a72;
+
+  --sl-text-body: 0.9375rem;
+  --sl-text-body-sm: 0.8125rem;
+  --sl-text-h1: 2rem;
+  --sl-text-h2: 1.5rem;
+  --sl-text-h3: 1.1875rem;
+  --sl-text-h4: 1rem;
+  --sl-text-h5: 0.9375rem;
+  --sl-line-height: 1.6;
+  --sl-line-height-headings: 1.2;
+  --sl-content-width: 41rem;
+  --sl-sidebar-width: 19rem; /* API operation labels fit on one line */
+  --sl-nav-height: 4rem;
+}
+
+:root[data-theme='light'] {
+  --sl-color-white: #17181b;
+  --sl-color-gray-1: #26282c;
+  --sl-color-gray-2: #3c3f45;
+  --sl-color-gray-3: #6b6f76;
+  --sl-color-gray-4: #9a9ea6;
+  --sl-color-gray-5: #e3e4e8;
+  --sl-color-gray-6: #f4f4f6;
+  --sl-color-gray-7: #f8f8fa;
+  --sl-color-black: #ffffff;
+  --sl-color-accent-low: #efeff2;
+  --sl-color-accent: #17181b;
+  --sl-color-accent-high: #17181b;
+  --sl-color-bg-nav: #ffffff;
+  --sl-color-bg-sidebar: #fbfbfc;
+  --sl-color-hairline: #ececf0;
+  --sl-color-hairline-light: #e3e4e8;
+  --sl-color-hairline-shade: #ececf0;
+  --sl-color-bg-inline-code: #f1f1f4;
+
+  --td-surface: #fbfbfc;
+  --td-hover: #f1f1f4;
+  --td-get: #2f6db3;
+  --td-post: #2e8a54;
+  --td-put: #9a6f0f;
+  --td-delete: #b8423a;
+}
+
+/* The page does not shift when a scrollbar appears. */
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-feature-settings: 'cv11', 'ss01';
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1#_top {
+  font-weight: 590;
+  letter-spacing: -0.022em;
+}
+
+.sl-markdown-content :is(h2, h3, h4) {
+  font-weight: 590;
+  letter-spacing: -0.012em;
+}
+
+.sl-markdown-content a {
+  color: var(--sl-color-white);
+  text-decoration-color: var(--sl-color-gray-4);
+  text-underline-offset: 0.2em;
+}
+
+.sl-markdown-content a:hover {
+  text-decoration-color: currentColor;
+}
+
+.sl-markdown-content code:not(pre code) {
+  padding: 0.1em 0.35em;
+  border-radius: 0.3rem;
+  font-size: 0.86em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--sl-color-white);
+  outline-offset: 2px;
+}
+
+kbd {
+  padding: 0.05rem 0.35rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.25rem;
+  font-family: var(--sl-font-mono);
+  font-size: 0.8em;
+}
+
+.td-lead {
+  max-width: 40rem;
+  font-size: 1rem;
+  color: var(--sl-color-gray-3);
+}
+
+/* No rule between the page title and the content. */
+.content-panel + .content-panel {
+  border-top: 0;
+}
+.main-pane .content-panel:first-child {
+  padding-bottom: 0;
+}
+
+.starlight-aside {
+  --sl-color-asides-text-accent: var(--sl-color-white);
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.5rem;
+  background: var(--td-surface);
+}
+.starlight-aside--caution {
+  border-inline-start: 3px solid var(--td-put);
+}
+.starlight-aside--danger {
+  border-inline-start: 3px solid var(--td-delete);
+}
+.starlight-aside__content {
+  color: var(--sl-color-gray-2);
+}
+
+.expressive-code .frame {
+  --ec-brdRad: 0.5rem;
+}
+
+/* ---------- No sideways scrolling inside articles ---------- */
+
+/* Long tokens in code (URLs with query strings) break too. */
+.expressive-code .ec-line .code {
+  overflow-wrap: anywhere;
+}
+
+/* Tables fit the column; code in cells may break anywhere. */
+.sl-markdown-content table {
+  display: table;
+  width: 100%;
+  overflow: visible;
+}
+.sl-markdown-content :is(td, th) {
+  overflow-wrap: break-word;
+}
+.sl-markdown-content :is(td, th) code {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 40rem) {
+  .sl-markdown-content table {
+    font-size: 0.8125rem;
+    hyphens: auto;
+  }
+  .sl-markdown-content :is(td, th) {
+    padding-inline: 0.3rem;
+    overflow-wrap: normal;
+  }
+  .sl-markdown-content :is(td, th) code {
+    font-size: 0.75rem;
+    hyphens: none;
+  }
+}
