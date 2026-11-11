@@ -1,0 +1,3 @@
+---
+summary: Get system statistics
+---

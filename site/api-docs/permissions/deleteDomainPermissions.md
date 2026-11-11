@@ -1,0 +1,3 @@
+---
+summary: Delete domain permissions
+---

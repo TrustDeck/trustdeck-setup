@@ -1,0 +1,63 @@
+---
+// Brand and search in a cell as wide as the sidebar, then a breadcrumb built
+// from the sidebar, then GitHub and the theme toggle.
+import Search from 'virtual:starlight/components/Search';
+import SiteTitle from 'virtual:starlight/components/SiteTitle';
+import SocialIcons from 'virtual:starlight/components/SocialIcons';
+import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
+import { isUserDocs } from '../routeData';
+
+type Entry = { type: 'link' | 'group'; label: string; href?: string; isCurrent?: boolean; entries?: Entry[] };
+type Crumb = { label: string; href?: string };
+
+const firstInternalLink = (entries: Entry[] = []): string | undefined => {
+  for (const e of entries) {
+    const href = e.type === 'link' ? (e.href?.startsWith('http') ? undefined : e.href) : firstInternalLink(e.entries);
+    if (href) return href;
+  }
+};
+
+// Sidebar groups leading to the current page, outermost first; each links to its first page.
+const trail = (entries: Entry[]): Crumb[] | undefined => {
+  for (const e of entries) {
+    if (e.type === 'link' && e.isCurrent) return [];
+    const inner = e.type === 'group' && e.entries ? trail(e.entries) : undefined;
+    if (inner) return [{ label: e.label, href: firstInternalLink(e.entries) }, ...inner];
+  }
+};
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const { sidebar, entry, hasSidebar } = Astro.locals.starlightRoute;
+const { pathname } = Astro.url;
+const set: Crumb = isUserDocs(pathname)
+  ? { label: 'User Docs', href: `${base}/user/` }
+  : { label: 'Developer Docs', href: `${base}/start/` };
+
+let crumbs: Crumb[] = [];
+if (pathname === set.href) crumbs = [{ label: set.label }];
+else if (pathname !== `${base}/`) crumbs = [set, ...((hasSidebar && trail(sidebar as Entry[])) || []), { label: entry.data.title }];
+---
+
+<div class="header td-header">
+  <div class="td-brand">
+    <SiteTitle />
+    <Search />
+  </div>
+  <nav class="td-crumbs" aria-label="Breadcrumb">
+    <ol>
+      {crumbs.map((c, i) => (
+        <li>
+          {i === crumbs.length - 1 || !c.href ? (
+            <span aria-current={i === crumbs.length - 1 ? 'page' : undefined}>{c.label}</span>
+          ) : (
+            <a href={c.href}>{c.label}</a>
+          )}
+        </li>
+      ))}
+    </ol>
+  </nav>
+  <div class="td-actions sl-hidden md:sl-flex print:hidden">
+    <SocialIcons />
+    <ThemeSelect />
+  </div>
+</div>
