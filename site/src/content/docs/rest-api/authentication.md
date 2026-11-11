@@ -58,14 +58,6 @@ A valid token only proves who you are. What you may do is decided by **permissio
 - Each operation in the [API reference](/trustdeck-setup/rest-api/reference/) names the permission it needs.
 - The first administrator gets the global permissions from a script, see [Quickstart](/trustdeck-setup/quickstart/#4-give-yourself-permissions).
 
-:::note[Outline: to be written with the maintainers]
-- Granting permissions to others: the `/api/permissions/...` endpoints for global, project, domain and entity-type permissions, and the frontend's permission screens.
-- Delegation: who may grant what (the `*:manage-permissions` actions).
-- Validity: permissions expire (default 3650 days).
-- Caching: permission checks are cached. Changes made directly in the database need a backend restart.
-- Audit trail: the `trustdeck_groups` token claim (`Human`, `Technical`, `Unaudited`, `AuditEverything`) controls how requests are audited.
-:::
-
 ## Getting an access token
 
 ### Service-to-service (client credentials)

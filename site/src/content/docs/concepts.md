@@ -278,10 +278,6 @@ Entity instances live inside **projects**. Projects act as containers and bounda
 
 A project may be configured to store pseudonyms, which can be used to attach pseudonyms to entity instances or to derive pseudonyms during ingestion (depending on your workflow).
 
-:::note[Outline: record linkage]
-Creating an entity can check for existing records of the same real-world object (`POST .../record-linkage`, permissions `entity:record-linkage` and `entity:resolve-linkage`, secret `TRUSTDECK_PPRL_SECRET`). How matching works and when to use it needs maintainer input.
-:::
-
 ### Example workflow (conceptual)
 
 1. Create a project:

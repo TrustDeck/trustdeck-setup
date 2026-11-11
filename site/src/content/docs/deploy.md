@@ -27,7 +27,7 @@ cd trustdeck-backend
 cp trustdeck.env.template trustdeck.env
 ```
 
-Fill in `trustdeck.env`. Every variable is described in the template. See the [environment reference](#environment-reference) below.
+Fill in `trustdeck.env`. Every variable is described in the template.
 
 ### Certificates
 
@@ -196,19 +196,6 @@ docker logs trustdeck-postgresql
 docker logs trustdeck-keycloak
 docker logs trustdeck-backend
 ```
-
-## Environment reference
-
-:::note[Outline: to be written]
-One table per group, with the descriptions copied from the comments in `trustdeck.env.template`, so the maintainers' wording stays the source:
-
-- **Database**: `DATABASE_TRUSTDECK_*`, `DATABASE_KEYCLOAK_*`
-- **Keycloak**: server URI, hostname, relative path, realm, client ID and secret, `KEYCLOAK_TOKEN_AUDIENCES`, admin user, log level
-- **Certificates**: the four paths above
-- **Proxy**: `HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY` (passed into the image builds)
-- **CORS**: `TRUSTDECK_CORS_*`, needed when the frontend runs on another origin
-- **Record linkage**: `TRUSTDECK_PPRL_SECRET`. What it protects needs maintainer input.
-:::
 
 ## Administration endpoints
 

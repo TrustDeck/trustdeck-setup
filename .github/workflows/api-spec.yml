@@ -1,0 +1,51 @@
+# Exports the REST API spec of a backend version and checks site/api-docs/ against it.
+# First step: read-only. It shows what changed in the log but does not push anything.
+name: Update API spec
+
+on:
+  workflow_dispatch:
+    inputs:
+      backend-ref:
+        description: Backend tag or branch, e.g. v2.7.1
+        required: true
+        default: v2.7.1
+  # For testing before the workflow is on main; remove before merging.
+  push:
+    branches: [starlight-documentation-site]
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: TrustDeck/trustdeck-backend
+          ref: ${{ inputs.backend-ref || 'v2.7.1' }}
+          path: backend
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Export the spec
+        working-directory: site
+        run: |
+          npm ci
+          bash scripts/export-api-spec.sh ../backend
+
+      - name: Show what changed
+        run: git diff --stat site/api
+
+      - name: Check the endpoint docs
+        working-directory: site
+        run: npm run api-spec

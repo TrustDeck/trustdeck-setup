@@ -25,7 +25,3 @@ try {
 }
 ```
 
-:::note[Outline: to be written with the maintainers]
-- How to find the `userId` of another user (user search).
-- The same `update` call for domain, entity-type and global permissions.
-:::

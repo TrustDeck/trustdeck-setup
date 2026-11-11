@@ -77,11 +77,6 @@ A new user has no permissions in TrustDeck. The bootstrap script grants a Keyclo
 ./src/main/resources/scripts/addInitialAdminUser.sh --username service-account-trustdeck
 ```
 
-:::caution[Known issues (found during the walkthrough)]
-- With the current Keycloak image (`keycloak:latest`, 26.8.2) the script stops with `Keycloak user lookup request failed with HTTP 401`. Keycloak logs `Expected audience not available in the token`. This is reported to the maintainers.
-- In dev mode the script writes the permissions, then exits with `Backend container not found`, because the backend is not a container. The permissions are stored anyway.
-:::
-
 Restart the backend (<kbd>Ctrl</kbd>+<kbd>C</kbd>, then `./trustdeck.sh dev start` again) so that `GET /api/permissions/me` shows the new permissions.
 
 ## 5. Create a project, a domain and a pseudonym
@@ -266,10 +261,6 @@ Stop the backend with <kbd>Ctrl</kbd>+<kbd>C</kbd>, then stop the containers:
 ```bash
 docker compose -p trustdeck-dev --env-file trustdeck.env -f docker/docker-compose.dev.yml down
 ```
-
-:::caution[Known issue]
-`./trustdeck.sh dev stop` reports `Dev stack stopped.`, but the containers keep running. `start` uses the Compose project name `trustdeck-dev` and `stop` uses `trustdeck`. Reported to the maintainers. Until it is fixed, use the command above.
-:::
 
 ## Next steps
 
