@@ -1,0 +1,3 @@
+---
+summary: Create domain permissions
+---

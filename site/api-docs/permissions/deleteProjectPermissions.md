@@ -1,0 +1,3 @@
+---
+summary: Delete project permissions
+---
